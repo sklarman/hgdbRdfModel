@@ -7,6 +7,7 @@ import org.hypergraphdb.query.HGQueryCondition;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import static org.hypergraphdb.HGQuery.hg.and;
 import static org.hypergraphdb.HGQuery.hg.incidentAt;
@@ -19,7 +20,7 @@ public class RdfModel
         this.graph = graph;
     }
 
-    public URI uri(Object value) {
+    public URI uri(String value) {
         return new URI(value);
     }
 
@@ -38,7 +39,7 @@ public class RdfModel
         Resource idResource;
 
         if (tripleLink==null) {
-            idResource = new URI("uniqueIdPlaceholder");
+            idResource = new URI("_://id/" + UUID.randomUUID());
             HGHandle id = getUniqueResourceHandle(idResource);
             tripleLink = new RdfTripleLink(id, s, p, o);
             graph.add(tripleLink);

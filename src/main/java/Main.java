@@ -18,7 +18,7 @@ public class Main {
         Resource nameResource = new URI("http://name");
         Resource personResource = new URI("http://Person");
         Resource name = new Literal("szymon");
-        Resource ageResource = new Literal("http://age");
+        Resource ageResource = new URI("http://age");
         Resource age = new Literal(37);
 
         model.assertTriple(szymonResource, ownsResource, catResource);
@@ -32,35 +32,36 @@ public class Main {
         Set<RdfTriple> set1 = model.getTriplesWithSubject("http://szymon");
         printTriples(set1);
 
-//        uniqueIdPlaceholder = <http://szymon> <http://name> "szymon"
-//        uniqueIdPlaceholder = <http://szymon> <http://owns> <http://cat>
-//        uniqueIdPlaceholder = <http://szymon> <http://owns> <http://dog>
-//        uniqueIdPlaceholder = <http://szymon> <http://age> 37
-//        uniqueIdPlaceholder = <http://szymon> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://Person>
+//        _://id/79b4b8d2-6f3b-475a-8395-f8a291b4cea9 = <http://szymon> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://Person>
+//        _://id/74b4b5fe-b8c4-42ab-a827-c14232189ff0 = <http://szymon> <http://age> 37
+//        _://id/539bbc3a-2b7f-407a-9b37-1e72a77c4814 = <http://szymon> <http://owns> <http://dog>
+//        _://id/16fad93f-4811-441a-8546-6bd1f7f162ea = <http://szymon> <http://name> "szymon"
+//        _://id/55ad6c56-31c5-433f-8905-ccf6cf1f9bcd = <http://szymon> <http://owns> <http://cat>
 
-
+        
         System.out.println();
         Set<RdfTriple> set2 = model.getTriplesWithPredicate("http://owns");
         printTriples(set2);
 
-//        uniqueIdPlaceholder = <http://szymon> <http://owns> <http://dog>
-//        uniqueIdPlaceholder = <http://mary> <http://owns> <http://cat>
-//        uniqueIdPlaceholder = <http://szymon> <http://owns> <http://cat>
+//        _://id/6162462a-75b1-43c8-a6c0-714ea5816456 = <http://mary> <http://owns> <http://cat>
+//        _://id/539bbc3a-2b7f-407a-9b37-1e72a77c4814 = <http://szymon> <http://owns> <http://dog>
+//        _://id/55ad6c56-31c5-433f-8905-ccf6cf1f9bcd = <http://szymon> <http://owns> <http://cat>
 
 
         System.out.println();
         Set<RdfTriple> set3 = model.getTriplesWithURIObject("http://cat");
         printTriples(set3);
 
-//        uniqueIdPlaceholder = <http://szymon> <http://owns> <http://cat>
-//        uniqueIdPlaceholder = <http://mary> <http://owns> <http://cat>
+//        _://id/6162462a-75b1-43c8-a6c0-714ea5816456 = <http://mary> <http://owns> <http://cat>
+//        _://id/55ad6c56-31c5-433f-8905-ccf6cf1f9bcd = <http://szymon> <http://owns> <http://cat>
 
 
         System.out.println();
         Set<RdfTriple> set4 = model.getTriplesWithLiteralObject(37);
         printTriples(set4);
 
-//        uniqueIdPlaceholder = <http://szymon> <http://age> 37
+//        _://id/74b4b5fe-b8c4-42ab-a827-c14232189ff0 = <http://szymon> <http://age> 37
+
 
         System.out.println();
         Set<Resource> set5 = model.getInstanesOf("http://Person");
